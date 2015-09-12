@@ -59,7 +59,7 @@ defmodule Iplist.Ip do
   def range(a, a) when is_tuple(a), do: [a]
   # TODO: Implement this as a stream
   def range(a, b) when is_tuple(a) and is_tuple(b) and b > a do
-    List.flatten [a, range(increment(a), b)]
+    [a|range(increment(a), b)]
   end
   def range(a, b) when is_binary(a) and is_binary(b) do
     range(from_string(a), from_string(b))
