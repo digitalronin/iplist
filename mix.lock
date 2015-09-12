@@ -1,1 +1,3 @@
-%{"cidr": {:hex, :cidr, "0.2.0"}}
+%{"cidr": {:hex, :cidr, "0.2.0"},
+  "earmark": {:hex, :earmark, "0.1.17"},
+  "ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "8e7761c8bf43bf70802a91accec1254bac9fc464", []}}

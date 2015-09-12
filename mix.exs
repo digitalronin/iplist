@@ -31,7 +31,9 @@ defmodule Iplist.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:cidr, ">= 0.2.0"}
+      { :cidr,    ">= 0.2.0"                   },
+      { :earmark, ">= 0.0.0"                   },
+      { :ex_doc,  github: "elixir-lang/ex_doc" },
     ]
   end
 

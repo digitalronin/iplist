@@ -4,10 +4,11 @@ defmodule Iplist.Ip do
 
   ## Example
 
-    iex> Iplist.Ip.increment {1, 2, 3, 4}
-    {1, 2, 3, 5}
-    iex> Iplist.Ip.increment {1, 2, 254, 254}
-    {1, 3, 0, 0}
+      iex> Iplist.Ip.increment {1, 2, 3, 4}
+      {1, 2, 3, 5}
+
+      iex> Iplist.Ip.increment {1, 2, 254, 254}
+      {1, 3, 0, 0}
 
   """
   def increment({254, 254, 254, 254}), do: raise "No more IPs!"
@@ -17,24 +18,19 @@ defmodule Iplist.Ip do
   def increment({a, b, c, d}),         do: {a, b, c, d + 1}
 
   @doc """
-  Take an IP range in various formats and return a list of tuples.
+  Take string, in various formats, representing an IP range
+  return a list of all IPs in the range, as tuples.
 
   ## Example
 
-    iex> Iplist.Ip.range "1.2.3.4"
-    [{1, 2, 3, 4}]
+      iex> Iplist.Ip.range "1.2.3.4"
+      [{1, 2, 3, 4}]
 
-    iex> Iplist.Ip.range "1.2.3.4..1.2.3.5"
-    [{1, 2, 3, 4}, {1, 2, 3, 5}]
+      iex> Iplist.Ip.range "1.2.3.4..1.2.3.5"
+      [{1, 2, 3, 4}, {1, 2, 3, 5}]
 
-    iex> Iplist.Ip.range("1.2.3.4", "1.2.3.5")
-    [{1, 2, 3, 4}, {1, 2, 3, 5}]
-
-    iex> Iplist.Ip.range("1.2.3.4/31")
-    [{1, 2, 3, 4}, {1, 2, 3, 5}]
-
-    iex> Iplist.Ip.range({1, 2, 3, 4}, {1, 2, 3, 5})
-    [{1, 2, 3, 4}, {1, 2, 3, 5}]
+      iex> Iplist.Ip.range("1.2.3.4/31")
+      [{1, 2, 3, 4}, {1, 2, 3, 5}]
 
   """
   def range(str) when is_binary(str) do
@@ -46,6 +42,20 @@ defmodule Iplist.Ip do
       end
     end
   end
+
+  @doc """
+  Given the start and end of an IP range, as two strings or two tuples,
+  return a list of all IPs in the range, as tuples.
+
+  ## Example
+
+      iex> Iplist.Ip.range("1.2.3.4", "1.2.3.5")
+      [{1, 2, 3, 4}, {1, 2, 3, 5}]
+
+      iex> Iplist.Ip.range({1, 2, 3, 4}, {1, 2, 3, 5})
+      [{1, 2, 3, 4}, {1, 2, 3, 5}]
+
+  """
   def range(a, a) when is_tuple(a), do: [a]
   # TODO: Implement this as a stream
   def range(a, b) when is_tuple(a) and is_tuple(b) and b > a do
@@ -60,8 +70,8 @@ defmodule Iplist.Ip do
 
   ## Example
 
-    iex> Iplist.Ip.from_string "1.2.3.4"
-    {1, 2, 3, 4}
+      iex> Iplist.Ip.from_string "1.2.3.4"
+      {1, 2, 3, 4}
 
   """
   def from_string(str) do
@@ -74,8 +84,8 @@ defmodule Iplist.Ip do
 
   ## Example
 
-    iex> Iplist.Ip.to_string {1, 2, 3, 4}
-    "1.2.3.4"
+      iex> Iplist.Ip.to_string {1, 2, 3, 4}
+      "1.2.3.4"
 
   """
   def to_string({a, b, c, d}), do: Enum.join([a, b, c, d], ".")
