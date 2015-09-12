@@ -5,3 +5,4 @@ erl_crash.dump
 iplist
 tags
 .projections.json
+.ctags_exclude
