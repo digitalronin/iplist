@@ -1,4 +1,4 @@
-iplist:
+iplist: lib/iplist/*.ex
 	mix escript.build
 
 install: iplist
