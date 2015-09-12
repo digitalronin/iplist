@@ -1,15 +1,21 @@
 defmodule Iplist.Mixfile do
   use Mix.Project
 
+  @version "1.0.0"
+
   def project do
     [
       app:              :iplist,
-      version:          "0.0.1",
+      version:          @version,
       elixir:           "~> 1.0",
+      name:             "Iplist",
+      source_url:       "https://github.com/digitalronin/iplist",
+      description:      "Library and CLI tool to expand IPv4 ranges to lists of IP numbers",
       build_embedded:   Mix.env == :prod,
       start_permanent:  Mix.env == :prod,
       escript:          escript_config,
-      deps:             deps
+      deps:             deps,
+      package:          package
     ]
   end
 
@@ -39,5 +45,13 @@ defmodule Iplist.Mixfile do
 
   defp escript_config do
     [ main_module: Iplist.CLI ]
+  end
+
+  defp package do
+    [
+      contributors:  ["David Salgado"],
+      licenses:      ["Apache 2.0"],
+      links:         %{ "GitHub" => "https://github.com/digitalronin/iplist" }
+    ]
   end
 end
