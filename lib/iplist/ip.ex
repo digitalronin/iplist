@@ -8,13 +8,34 @@ defmodule Iplist.Ip do
   def range(str) when is_binary(str) do
     case String.split(str, "..") do
       [a, b] -> range(from_string(a), from_string(b))
-      [a]    -> range(from_string(a), from_string(a))
+      [a]    -> case String.split(a, "/") do
+        [ip] -> range(from_string(ip), from_string(ip))
+        [ip, netmask] -> range_from_cidr(ip, netmask)
+      end
     end
   end
   def range(a, a) when is_tuple(a), do: [a]
   # TODO: Implement this as a stream
-  def range(a, b) when is_tuple(a) and is_tuple(b) do
+  def range(a, b) when is_tuple(a) and is_tuple(b) and b > a do
     List.flatten [a, range(increment(a), b)]
+  end
+  def range(a, b) when is_binary(a) and is_binary(b) do
+    range(from_string(a), from_string(b))
+  end
+
+  defp range_from_cidr(ip, netmask) do
+    cidr = CIDR.parse "#{ip}/#{netmask}"
+    List.flatten range_in_cidr(cidr, from_string(ip))
+  end
+
+  defp range_in_cidr(cidr, tuple) do
+    next = increment tuple
+    list = [tuple]
+    if CIDR.match(cidr, next) do
+      [list|range_in_cidr(cidr, next)]
+    else
+      list
+    end
   end
 
   def from_string(str) do

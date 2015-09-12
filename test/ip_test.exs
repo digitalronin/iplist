@@ -24,5 +24,14 @@ defmodule Ip do
   test "range from string" do
     assert [{1,2,3,4}]            == Iplist.Ip.range("1.2.3.4")
     assert [{1,2,3,4}, {1,2,3,5}] == Iplist.Ip.range("1.2.3.4..1.2.3.5")
+
+    # CIDR
+    assert [{1,2,3,4}]            == Iplist.Ip.range("1.2.3.4/32")
+    assert [{1,2,3,4}, {1,2,3,5}] == Iplist.Ip.range("1.2.3.4/31")
+    assert Iplist.Ip.range({1,2,3,0}, {1,2,3,254}) == Iplist.Ip.range("1.2.3.0/24")
+  end
+
+  test "range from strings" do
+    assert [{1,2,3,4}, {1,2,3,5}] == Iplist.Ip.range("1.2.3.4", "1.2.3.5")
   end
 end
