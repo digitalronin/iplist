@@ -1,4 +1,0 @@
-{
-  "test/*_test.exs": { "alternate": "lib/iplist/{}.ex" },
-  "lib/iplist/*.ex": { "alternate": "test/{}_test.exs" }
-}
