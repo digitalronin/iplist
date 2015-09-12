@@ -7,14 +7,14 @@ defmodule Iplist.Ip do
       iex> Iplist.Ip.increment {1, 2, 3, 4}
       {1, 2, 3, 5}
 
-      iex> Iplist.Ip.increment {1, 2, 254, 254}
+      iex> Iplist.Ip.increment {1, 2, 255, 255}
       {1, 3, 0, 0}
 
   """
-  def increment({254, 254, 254, 254}), do: raise "No more IPs!"
-  def increment({a, 254, 254, 254}),   do: {a + 1, 0, 0, 0}
-  def increment({a, b, 254, 254}),     do: {a, b + 1, 0, 0}
-  def increment({a, b, c, 254}),       do: {a, b, c + 1, 0}
+  def increment({255, 255, 255, 255}), do: raise "No more IPs!"
+  def increment({a, 255, 255, 255}),   do: {a + 1, 0, 0, 0}
+  def increment({a, b, 255, 255}),     do: {a, b + 1, 0, 0}
+  def increment({a, b, c, 255}),       do: {a, b, c + 1, 0}
   def increment({a, b, c, d}),         do: {a, b, c, d + 1}
 
   @doc """

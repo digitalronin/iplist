@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-        <title>Iplist.Ip – Iplist v1.0.0</title>
+        <title>Iplist.Ip – Iplist v1.0.1</title>
       
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.8.4">
@@ -26,7 +26,7 @@
       <a href="https://github.com/digitalronin/iplist">Iplist</a>
     </h1>
   
-  <h2 class="sidebar-projectVersion">v1.0.0</h2>
+  <h2 class="sidebar-projectVersion">v1.0.1</h2>
 
   <div class="sidebar-search">
     <i class="fa fa-search"></i>
@@ -164,7 +164,7 @@ return a list of all IPs in the range, as tuples</p>
 <pre><code class="iex elixir">iex&gt; Iplist.Ip.increment {1, 2, 3, 4}
 {1, 2, 3, 5}
 
-iex&gt; Iplist.Ip.increment {1, 2, 254, 254}
+iex&gt; Iplist.Ip.increment {1, 2, 255, 255}
 {1, 3, 0, 0}</code></pre>
 
   </section>

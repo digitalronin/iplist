@@ -3,10 +3,10 @@ defmodule Ip do
 
   test "increment" do
     assert {1, 2, 3, 5} == Iplist.Ip.increment({1, 2, 3, 4})
-    assert {1, 2, 4, 0} == Iplist.Ip.increment({1, 2, 3, 254})
-    assert {1, 3, 0, 0} == Iplist.Ip.increment({1, 2, 254, 254})
-    assert {2, 0, 0, 0} == Iplist.Ip.increment({1, 254, 254, 254})
-    assert_raise RuntimeError, "No more IPs!", fn -> Iplist.Ip.increment({254, 254, 254, 254}) end
+    assert {1, 2, 4, 0} == Iplist.Ip.increment({1, 2, 3, 255})
+    assert {1, 3, 0, 0} == Iplist.Ip.increment({1, 2, 255, 255})
+    assert {2, 0, 0, 0} == Iplist.Ip.increment({1, 255, 255, 255})
+    assert_raise RuntimeError, "No more IPs!", fn -> Iplist.Ip.increment({255, 255, 255, 255}) end
   end
 
   test "range" do
@@ -26,7 +26,7 @@ defmodule Ip do
     # CIDR
     assert [{1,2,3,4}]            == Iplist.Ip.range("1.2.3.4/32")
     assert [{1,2,3,4}, {1,2,3,5}] == Iplist.Ip.range("1.2.3.4/31")
-    assert Iplist.Ip.range({1,2,3,0}, {1,2,3,254}) == Iplist.Ip.range("1.2.3.0/24")
+    assert Iplist.Ip.range({1,2,3,0}, {1,2,3,255}) == Iplist.Ip.range("1.2.3.0/24")
   end
 
   test "range from strings" do
