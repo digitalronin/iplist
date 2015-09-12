@@ -2,12 +2,15 @@ defmodule Iplist.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :iplist,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app:              :iplist,
+      version:          "0.0.1",
+      elixir:           "~> 1.0",
+      build_embedded:   Mix.env == :prod,
+      start_permanent:  Mix.env == :prod,
+      escript:          escript_config,
+      deps:             deps
+    ]
   end
 
   # Configuration for the OTP application
@@ -30,5 +33,9 @@ defmodule Iplist.Mixfile do
     [
       {:cidr, ">= 0.2.0"}
     ]
+  end
+
+  defp escript_config do
+    [ main_module: Iplist.CLI ]
   end
 end

@@ -7,7 +7,7 @@ defmodule Iplist.Lister do
     readlines
   end
 
-  defp expand(str) do
+  def expand(str) do
     Iplist.Ip.range(str) |> Enum.map &Iplist.Ip.to_string(&1) |> IO.puts
   end
 end
