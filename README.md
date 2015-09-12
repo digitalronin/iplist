@@ -1,7 +1,7 @@
 Iplist
 ======
 
-  Expand IP range(s) into a list of IP tuples
+  Elixir library and command-line tool to expand IP range(s) into a list of IP tuples
 
 ## Install
 
