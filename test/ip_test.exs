@@ -1,8 +1,6 @@
 defmodule Ip do
   use ExUnit.Case
 
-  import Iplist.Ip
-
   test "increment" do
     assert {1, 2, 3, 5} == Iplist.Ip.increment({1, 2, 3, 4})
     assert {1, 2, 4, 0} == Iplist.Ip.increment({1, 2, 3, 254})
