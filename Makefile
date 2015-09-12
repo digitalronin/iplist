@@ -20,5 +20,6 @@ watch:
 
 publish:
 	mix hex.publish
+	mix hex.docs
 
 .PHONY: test watch
