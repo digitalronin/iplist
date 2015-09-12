@@ -15,7 +15,9 @@ end
 
 Or, if you only want the command-line tool;
 
-  make install
+```bash
+make install
+```
 
 This will use mix to build an escript executable, and copy it to ~/bin/
 
