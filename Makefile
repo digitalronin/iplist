@@ -18,4 +18,7 @@ doc/index.html: iplist
 watch:
 	while sleep 2; do find . -name '*.ex*' | entr -r -d make test; done
 
+publish:
+	mix hex.publish
+
 .PHONY: test watch
