@@ -23,6 +23,13 @@ defmodule Iplist.Ip do
     range(from_string(a), from_string(b))
   end
 
+  def from_string(str) do
+    list = String.split(str, ".") |> Enum.map &String.to_integer(&1)
+    list_as_tuple list
+  end
+
+  def to_string({a, b, c, d}), do: Enum.join([a, b, c, d], ".")
+
   defp range_from_cidr(ip, netmask) do
     cidr = CIDR.parse "#{ip}/#{netmask}"
     List.flatten range_in_cidr(cidr, from_string(ip))
@@ -36,11 +43,6 @@ defmodule Iplist.Ip do
     else
       list
     end
-  end
-
-  def from_string(str) do
-    list = String.split(str, ".") |> Enum.map &String.to_integer(&1)
-    list_as_tuple list
   end
 
   defp list_as_tuple([a, b, c, d]) do

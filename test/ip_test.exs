@@ -34,4 +34,8 @@ defmodule Ip do
   test "range from strings" do
     assert [{1,2,3,4}, {1,2,3,5}] == Iplist.Ip.range("1.2.3.4", "1.2.3.5")
   end
+
+  test "as string" do
+    assert "1.2.3.4" == Iplist.Ip.to_string({1, 2, 3, 4})
+  end
 end
